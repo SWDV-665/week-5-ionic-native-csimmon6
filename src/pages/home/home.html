@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!--beginning of content-->
+<ion-content padding>
+
+  <h3  class="no-item" text-center *ngIf = "loadItems().length === 0">
+    No items on list!
+  </h3>
+
+  <!--beginning of list-->
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
+      <ion-item>
+        <h2>{{item.name}}</h2>
+        <p>{{item.quantity}}</p>
+      </ion-item>
+      <ion-item-options>
+        <!--button to edit list item-->
+        <button (click)="editItem(item, i)" ion-button color="primary" icon-start>
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+
+        <!--button to share item-->
+        <button (click)="shareItem(item, i)" ion-button color="light">
+          <ion-icon name="share-alt"></ion-icon>
+          share
+        </button>
+        
+        <!--button to remove finished list item-->
+        <button (click)="removeItem(item, i)" ion-button color="secondary" icon-start>
+          <ion-icon name="trash"></ion-icon>
+          Finished
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  <!--end of list-->
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button (click)="addItem()" ion-fab mini><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+<!--end of content-->
+</ion-content>
